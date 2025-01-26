@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Insights and Recommendations" href="insights.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" /> 
+    <link rel="prev" title="Data Exploration" href="data_exploration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,6 +45,8 @@
               <p class="caption" role="heading"><span class="caption-text">Sections:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">Data Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_exploration.html">Data Exploration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Model Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#algorithms-used">Algorithms Used</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#training-and-evaluation">Training and Evaluation</a></li>
@@ -88,22 +90,54 @@
 </section>
 <section id="training-and-evaluation">
 <h2>Training and Evaluation<a class="headerlink" href="#training-and-evaluation" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p><strong>Train-Test Split</strong>:
-- 80% training, 20% testing.</p></li>
-<li><p><strong>Metrics</strong>:
+<ol class="arabic">
+<li><p><strong>Train-Test Split</strong>:</p>
+<ul class="simple">
+<li><p>80% training, 20% testing.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Train the XGBoost model.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Metrics</strong>:</p>
+<ul class="simple">
+<li><p>Make predictions.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Evaluate performance.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Results:
 - Accuracy: 90%
 - F1 Score: 0.8857</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="hyperparameter-tuning">
 <h2>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Link to this heading"></a></h2>
-<p>Best parameters:
-- <cite>colsample_bytree</cite>: 0.9
-- <cite>learning_rate</cite>: 0.1
-- <cite>max_depth</cite>: 5
-- <cite>n_estimators</cite>: 100
-- <cite>subsample</cite>: 0.8</p>
+<p>Best parameters:</p>
+<ul class="simple">
+<li><p><cite>colsample_bytree</cite>: 0.9</p></li>
+<li><p><cite>learning_rate</cite>: 0.1</p></li>
+<li><p><cite>max_depth</cite>: 5</p></li>
+<li><p><cite>n_estimators</cite>: 100</p></li>
+<li><p><cite>subsample</cite>: 0.8</p></li>
+</ul>
 </section>
 </section>
 
@@ -111,7 +145,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_exploration.html" class="btn btn-neutral float-left" title="Data Exploration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="insights.html" class="btn btn-neutral float-right" title="Insights and Recommendations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

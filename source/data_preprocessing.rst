@@ -26,6 +26,8 @@ Feature Engineering
 
 2. **Scaling**:
    - Standardization was applied to numerical features using `StandardScaler`.
-
----
+      ```python
+      scaler = StandardScaler() 
+      X = scaler.fit_transform(X)
+      ```
 
