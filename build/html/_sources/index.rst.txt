@@ -3,15 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Admission_Prediction documentation
-==================================
+Admission Prediction Using Machine Learning documentation
+==========================================================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
 
+Welcome to the Student Admission Prediction Project documentation.
+
+Contents:
+---------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Sections:
+
+   introduction
+   data_preprocessing
+   data_exploration
+   model_building
+   insights
 
